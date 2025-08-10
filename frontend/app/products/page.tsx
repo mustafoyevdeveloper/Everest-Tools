@@ -36,7 +36,23 @@ export default function ProductsPage() {
   ]
 
   // Mahsulotlar backenddan yoki contextdan olinadi. Statik mahsulotlar olib tashlandi.
-  const products = [];
+  type Product = {
+    id: number | string
+    name: string
+    category: string
+    price: number
+    originalPrice?: number | null
+    image?: string
+    rating: number
+    reviews: number
+    features: string[]
+    inStock: boolean
+    isNew?: boolean
+    brand?: string
+    description?: string
+  }
+
+  const products: Product[] = []
 
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase())
