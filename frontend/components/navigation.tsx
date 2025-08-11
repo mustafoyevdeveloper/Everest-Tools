@@ -67,7 +67,6 @@ export function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-lg border-b border-border/50 shadow-sm"
       className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-lg border-b border-border/50 shadow-sm no-tap-highlight"
     >
       <div className="container mx-auto px-2 sm:px-4 lg:px-6 py-2 sm:py-3">
