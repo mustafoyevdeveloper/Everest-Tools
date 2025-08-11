@@ -17,6 +17,9 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "EVEREST TOOLS - Professional Construction Tools",
   description: "EVEREST TOOLS kompaniyasi: professional qurilish asboblari va uskunalari",
+  icons: {
+    icon: '/Everest Tools.png', // public papkadagi fayl yo‘li
+  },
   generator: "v0.dev",
 }
 

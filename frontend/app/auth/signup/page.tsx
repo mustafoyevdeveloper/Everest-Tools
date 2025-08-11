@@ -12,6 +12,8 @@ import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { useAuth } from "@/contexts/auth-context"
+import { useRouter } from "next/navigation"
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -24,12 +26,24 @@ export default function SignupPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const { t } = useLanguage()
+  const { signup } = useAuth()
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (formData.password !== formData.confirmPassword) {
+      alert("Parollar mos kelmadi")
+      return
+    }
     setIsLoading(true)
-    // Simulate signup
-    setTimeout(() => setIsLoading(false), 2000)
+    try {
+      await signup(formData.name, formData.email, formData.password)
+      router.push("/")
+    } catch (err: any) {
+      alert(err?.message || "Ro‘yxatdan o‘tishda xatolik")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

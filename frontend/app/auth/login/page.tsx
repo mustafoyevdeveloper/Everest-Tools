@@ -31,8 +31,8 @@ export default function LoginPage() {
     try {
       await login(email, password)
       router.push("/")
-    } catch (error) {
-      console.error("Login failed:", error)
+    } catch (error: any) {
+      alert(error?.message || "Kirishda xatolik")
     } finally {
       setIsLoading(false)
     }
