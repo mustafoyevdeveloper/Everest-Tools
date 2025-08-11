@@ -36,6 +36,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Input } from "@/components/ui/input"
 
 export function Navigation() {
@@ -46,6 +47,7 @@ export function Navigation() {
   const { user, logout, isAdmin } = useAuth()
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
+  const pathname = usePathname()
 
   const languages = [
     { code: "uz" as const, name: "O'zbek", flag: "🇺🇿" },
@@ -66,6 +68,7 @@ export function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-lg border-b border-border/50 shadow-sm"
+      className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-lg border-b border-border/50 shadow-sm no-tap-highlight"
     >
       <div className="container mx-auto px-2 sm:px-4 lg:px-6 py-2 sm:py-3">
         <div className="flex items-center justify-between gap-2">
@@ -105,7 +108,12 @@ export function Navigation() {
             {/* Til va tema */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="Til tanlash">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label="Til tanlash"
+                  className="!hover:bg-transparent !hover:text-inherit active:bg-transparent focus:bg-transparent focus-visible:ring-0 md:hover:bg-accent md:hover:text-accent-foreground"
+                >
                   <Globe className="w-5 h-5" />
                 </Button>
               </DropdownMenuTrigger>
@@ -122,18 +130,31 @@ export function Navigation() {
               size="icon"
               aria-label="Tema almashtirish"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="!hover:bg-transparent !hover:text-inherit active:bg-transparent focus:bg-transparent focus-visible:ring-0 md:hover:bg-accent md:hover:text-accent-foreground"
             >
               {mounted ? (theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />) : null}
             </Button>
             {/* Like va savatcha */}
             <Link href="/liked" aria-label="Liked">
-              <Button variant="ghost" size="icon" className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={
+                  `relative !hover:bg-transparent !hover:text-inherit active:bg-transparent focus:bg-transparent focus-visible:ring-0 md:hover:bg-accent md:hover:text-accent-foreground ${pathname.startsWith("/liked") ? "text-yellow-500" : ""}`
+                }
+              >
                 <Heart className="w-5 h-5" />
                 <Badge className="absolute -top-1 -right-1 text-xs bg-red-500">2</Badge>
               </Button>
             </Link>
             <Link href="/cart" aria-label="Savatcha">
-              <Button variant="ghost" size="icon" className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={
+                  `relative !hover:bg-transparent !hover:text-inherit active:bg-transparent focus:bg-transparent focus-visible:ring-0 md:hover:bg-accent md:hover:text-accent-foreground ${pathname.startsWith("/cart") ? "text-yellow-500" : ""}`
+                }
+              >
                 <ShoppingCart className="w-5 h-5" />
                 <Badge className="absolute -top-1 -right-1 text-xs bg-yellow-500">3</Badge>
               </Button>

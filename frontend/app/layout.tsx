@@ -11,6 +11,7 @@ import { GeistMono } from "geist/font/mono"
 import { Package, Wrench, Headphones, Info, Phone, LogIn, UserPlus } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { MobileTopBar } from "@/components/mobile-top-bar"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -46,16 +47,8 @@ html {
               <ScrollToTop />
               {/* Navigation bar */}
               {/* ... */}
-              {/* Top icon bar: faqat mobil, navbar ostida */}
-              <div className="sticky top-[56px] z-40 bg-background border-b border-border flex justify-center gap-3 py-2 lg:hidden">
-                <Link href="/products"><Button variant="ghost" size="icon" className="rounded-full hover:bg-yellow-100"><Package /></Button></Link>
-                <Link href="/services"><Button variant="ghost" size="icon" className="rounded-full hover:bg-yellow-100"><Wrench /></Button></Link>
-                <Link href="/support"><Button variant="ghost" size="icon" className="rounded-full hover:bg-yellow-100"><Headphones /></Button></Link>
-                <Link href="/about"><Button variant="ghost" size="icon" className="rounded-full hover:bg-yellow-100"><Info /></Button></Link>
-                <Link href="/contact"><Button variant="ghost" size="icon" className="rounded-full hover:bg-yellow-100"><Phone /></Button></Link>
-                <Link href="/auth/login"><Button variant="ghost" size="icon" className="rounded-full hover:bg-yellow-100"><LogIn /></Button></Link>
-                <Link href="/auth/signup"><Button variant="ghost" size="icon" className="rounded-full hover:bg-yellow-100"><UserPlus /></Button></Link>
-              </div>
+              {/* Mobil ikon bar */}
+              <MobileTopBar />
               {children}
             </AuthProvider>
           </LanguageProvider>

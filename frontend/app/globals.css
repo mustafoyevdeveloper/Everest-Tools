@@ -58,6 +58,29 @@
   }
 }
 
+/* Disable mobile tap highlight (removes yellow/gray circle on tap) */
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  a, button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Stronger removal on coarse pointers (mobile) */
+@media (pointer: coarse) {
+  .no-tap-highlight, .no-tap-highlight * {
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+  }
+  .no-tap-highlight a,
+  .no-tap-highlight button {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
 /* Light mode improvements */
 .light {
   --background: 0 0% 98%;
